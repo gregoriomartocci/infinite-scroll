@@ -11,6 +11,10 @@ interface ImageContextProps {
   setError: React.Dispatch<React.SetStateAction<boolean>>;
   selectedImage: Image | null;
   setSelectedImage: React.Dispatch<React.SetStateAction<Image | null>>;
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+  filteredImages: Image[];
+  setFilteredImages: React.Dispatch<React.SetStateAction<Image[]>>;
 }
 
 const initialImageContext: ImageContextProps = {
@@ -22,6 +26,10 @@ const initialImageContext: ImageContextProps = {
   setError: () => {},
   selectedImage: null,
   setSelectedImage: () => {},
+  searchQuery: "",
+  setSearchQuery: () => {},
+  filteredImages: [],
+  setFilteredImages: () => {},
 };
 
 const ImageContext = createContext<ImageContextProps>(initialImageContext);
@@ -33,6 +41,8 @@ export const ImageProvider = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<Image | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [filteredImages, setFilteredImages] = useState<Image[]>([]);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -42,7 +52,6 @@ export const ImageProvider = ({ children }) => {
         const response = await axios.get(
           `https://jsonplaceholder.typicode.com/photos?_page=1&_limit=10`
         );
-        console.log("🚀 ~ fetchImages ~ response:", response)
         setImages(response.data);
       } catch (error) {
         setError(true);
@@ -52,6 +61,14 @@ export const ImageProvider = ({ children }) => {
 
     fetchImages();
   }, []);
+
+  useEffect(() => {
+    setFilteredImages(
+      images.filter((image) =>
+        image.title.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    );
+  }, [searchQuery, images]);
 
   return (
     <ImageContext.Provider
@@ -64,6 +81,10 @@ export const ImageProvider = ({ children }) => {
         setError,
         selectedImage,
         setSelectedImage,
+        searchQuery,
+        setSearchQuery,
+        filteredImages,
+        setFilteredImages,
       }}
     >
       {children}

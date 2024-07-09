@@ -21,8 +21,10 @@ const ImageItem: React.FC<ImageItemProps> = ({ image }) => {
       className="image-item"
       onClick={handleImageClick}
     >
-      <img src={image?.thumbnailUrl ?? ""} alt={image?.title ?? ""} />
-      <p>{image?.title ?? ""}</p>
+      <div className="image-item">
+        <img src={image?.thumbnailUrl ?? ""} alt={image?.title ?? ""} />
+        <p>{image?.title ?? ""}</p>
+      </div>
     </Link>
   );
 };

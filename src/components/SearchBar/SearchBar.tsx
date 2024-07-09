@@ -1,11 +1,9 @@
 import React from 'react';
+import { useImageContext } from '../../context/ImageContext.tsx';
 
-interface SearchBarProps {
-  searchQuery: string;
-  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
-}
+const SearchBar: React.FC = () => {
+  const { searchQuery, setSearchQuery } = useImageContext();
 
-const SearchBar: React.FC<SearchBarProps> = ({ searchQuery, setSearchQuery }) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };

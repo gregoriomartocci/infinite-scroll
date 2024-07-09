@@ -4,15 +4,14 @@ import ImageItem from "../Image/Image.tsx";
 import { useImageContext } from "../../context/ImageContext.tsx";
 
 const ImageList = () => {
-  const { images, loading, error } = useImageContext();
-  console.log("🚀 ~ ImageList ~ images:", images)
+  const { filteredImages, loading, error } = useImageContext();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error fetching images</p>;
 
   return (
     <div className="image-list">
-      {images.map((image) => (
+      {filteredImages.map((image) => (
         <ImageItem key={image.id} image={image} />
       ))}
     </div>
