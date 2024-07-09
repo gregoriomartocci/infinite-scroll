@@ -1,23 +1,20 @@
-import React from 'react';
-import './ImageList.css';
-import { Image } from '../../types/types.ts';
-import ImageItem from '../Image/Image.tsx';
+// src/components/ImageList/ImageList.tsx
+import React from "react";
+import ImageItem from "../Image/Image.tsx";
+import { useImageContext } from "../../context/ImageContext.tsx";
 
-interface ImageListProps {
-  images: Image[];
-  loading: boolean;
-  error: boolean;
-  setSelectedImage: (image: Image) => void;
-}
+const ImageList = () => {
+  const { images, loading, error } = useImageContext();
+  console.log("🚀 ~ ImageList ~ images:", images)
 
-const ImageList: React.FC<ImageListProps> = ({ images, loading, error, setSelectedImage }) => {
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error fetching images</p>;
+
   return (
     <div className="image-list">
-      {images.map(image => (
-        <ImageItem key={image.id} image={image}  />
+      {images.map((image) => (
+        <ImageItem key={image.id} image={image} />
       ))}
-      {loading && <p className="loading">Loading...</p>}
-      {error && <p className="error">Error fetching data. Please try again.</p>}
     </div>
   );
 };

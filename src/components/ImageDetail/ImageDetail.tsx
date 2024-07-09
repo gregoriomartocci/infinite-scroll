@@ -1,30 +1,27 @@
-// src/components/ImageDetail.tsx
-import React from "react";
-
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import "./ImageDetail.css";
 import { Image } from "../../types/types";
-import { Link } from "react-router-dom";
+import { useImageContext } from "../../context/ImageContext.tsx";
 
 interface ImageDetailProps {
   image: Image;
-  setSelectedImage: (image: Image | null) => void;
 }
 
-const ImageDetail: React.FC<ImageDetailProps> = ({
-  image,
-  setSelectedImage,
-}) => {
+const ImageDetail: React.FC<ImageDetailProps> = () => {
+  const { selectedImage, loading, error } = useImageContext();
+
   return (
     <div className="image-detail">
       <Link to="/" className="back-link">
         Back to Gallery
       </Link>
       <img
-        src={image?.thumbnailUrl ?? ""}
-        alt={image?.title ?? ""}
+        src={selectedImage?.thumbnailUrl || ""}
+        alt={selectedImage?.title || "Image Title"}
         style={{ maxWidth: "500px" }}
       />
-      <h2>{image?.title ?? "Image Title"}</h2>
+      <h2>{selectedImage?.title || "Image Title"}</h2>
     </div>
   );
 };
