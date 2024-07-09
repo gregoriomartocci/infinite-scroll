@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+// src/components/ImageItem/ImageItem.tsx
+import React from "react";
 import "./ImageItem.css";
 import { Image } from "../../types/types";
 import { Link } from "react-router-dom";
-import { useImageContext } from "../../context/ImageContext.tsx"; // Importa el contexto
+import { useImageContext } from "../../context/ImageContext.tsx";
 
 interface ImageItemProps {
   image: Image;
@@ -12,16 +13,12 @@ const ImageItem: React.FC<ImageItemProps> = ({ image }) => {
   const { setSelectedImage } = useImageContext();
 
   const handleImageClick = () => {
-    setSelectedImage(image); // Establece la imagen seleccionada en el contexto
+    setSelectedImage(image);
   };
 
   return (
-    <Link
-      to={`/image/${image.id}`}
-      className="image-item"
-      onClick={handleImageClick}
-    >
-      <div className="image-item">
+    <Link to={`/image/${image.id}`} className="image-item-link">
+      <div className="image-item" onClick={handleImageClick}>
         <img src={image?.thumbnailUrl ?? ""} alt={image?.title ?? ""} />
         <p>{image?.title ?? ""}</p>
       </div>

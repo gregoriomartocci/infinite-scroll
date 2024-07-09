@@ -2,6 +2,7 @@
 import React from "react";
 import ImageItem from "../Image/Image.tsx";
 import { useImageContext } from "../../context/ImageContext.tsx";
+import "./ImageList.css"
 
 const ImageList = () => {
   const { filteredImages, loading, error } = useImageContext();
