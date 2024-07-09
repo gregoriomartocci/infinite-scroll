@@ -1,0 +1,13 @@
+/* src/components/ImageItem.css */
+.image-item {
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .image-item img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+  

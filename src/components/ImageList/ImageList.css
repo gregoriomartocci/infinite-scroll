@@ -1,0 +1,14 @@
+/* src/components/ImageList.css */
+.image-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.loading,
+.error {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
