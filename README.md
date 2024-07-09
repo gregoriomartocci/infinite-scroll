@@ -6,6 +6,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+Homepage
+
+![alt text](image.png)
+
+Detail Page
+
+![alt text](image-1.png)
+
+This app has Infinite Scrolling
+
 ### `npm start`
 
 Runs the app in the development mode.\
