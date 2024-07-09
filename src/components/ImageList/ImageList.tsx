@@ -14,7 +14,7 @@ const ImageList: React.FC<ImageListProps> = ({ images, loading, error, setSelect
   return (
     <div className="image-list">
       {images.map(image => (
-        <ImageItem key={image.id} image={image} setSelectedImage={setSelectedImage} />
+        <ImageItem key={image.id} image={image}  />
       ))}
       {loading && <p className="loading">Loading...</p>}
       {error && <p className="error">Error fetching data. Please try again.</p>}

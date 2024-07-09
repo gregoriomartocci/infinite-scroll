@@ -1,7 +1,9 @@
 // src/components/ImageDetail.tsx
 import React from "react";
+
 import "./ImageDetail.css";
 import { Image } from "../../types/types";
+import { Link } from "react-router-dom";
 
 interface ImageDetailProps {
   image: Image;
@@ -14,13 +16,15 @@ const ImageDetail: React.FC<ImageDetailProps> = ({
 }) => {
   return (
     <div className="image-detail">
-      <button onClick={() => setSelectedImage(null)}>Back to Gallery</button>
+      <Link to="/" className="back-link">
+        Back to Gallery
+      </Link>
       <img
-        src={image.thumbnailUrl}
-        alt={image.title}
+        src={image?.thumbnailUrl ?? ""}
+        alt={image?.title ?? ""}
         style={{ maxWidth: "500px" }}
       />
-      <h2>{image.title}</h2>
+      <h2>{image?.title ?? "Image Title"}</h2>
     </div>
   );
 };
